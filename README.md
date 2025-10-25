@@ -1,5 +1,3 @@
-# README
-
 ## Setup
 
 Install dependencies:
