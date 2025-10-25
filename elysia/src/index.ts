@@ -1,12 +1,11 @@
-import { node } from "@elysiajs/node";
-import { openapi } from "@elysiajs/openapi";
+import { fromTypes, openapi } from "@elysiajs/openapi";
 import { log } from "console";
 import { Elysia } from "elysia";
 
-new Elysia({ adapter: node() })
+export const app = new Elysia()
   .use(
     openapi({
-      documentation: { servers: [{ url: "http://localhost:3000" }] },
+      references: fromTypes("src/index.ts"),
     })
   )
   .get("/", () => ({ hello: "hello" }))
