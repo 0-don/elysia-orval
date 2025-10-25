@@ -9,5 +9,5 @@ export function handleElysia<T extends { data: unknown; status: number }>(
   throw response;
 }
 
-const result = handleElysia(await getIndex({ name: "asd" }));
-console.log(result.hello);
+const result = handleElysia(await getIndex({ name: "asd!" }));
+console.log(result);
