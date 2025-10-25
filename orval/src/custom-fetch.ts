@@ -1,40 +1,34 @@
-const getUrl = (contextUrl: string): string => {
-  const apiUrl = "http://localhost:3000";
-  return new URL(contextUrl, apiUrl).toString();
-};
-
-const getBody = <T>(response: Response | Request): Promise<T> => {
-  const contentType = response.headers.get("content-type");
-
-  if (contentType?.includes("application/json")) {
-    return response.json();
-  }
-
-  if (
-    contentType &&
-    !contentType.startsWith("text/") &&
-    !contentType.includes("json") &&
-    !contentType.includes("xml")
-  ) {
-    return response.blob() as Promise<T>;
-  }
-
-  return response.text() as Promise<T>;
-};
-
 export const customFetch = async <T>(
   url: string,
   options: RequestInit
 ): Promise<T> => {
-  const response = await fetch(getUrl(url), {
-    ...options,
-    credentials: "include",
-  });
+  const response = await fetch(
+    new URL(url, "http://localhost:3000").toString(),
+    {
+      ...options,
+      credentials: "include",
+    }
+  );
 
   if (!response.ok) {
     throw await response.json();
   }
 
-  const data = await getBody<T>(response);
+  const contentType = response.headers.get("content-type");
+
+  let data: T;
+  if (contentType?.includes("application/json")) {
+    data = await response.json();
+  } else if (
+    contentType &&
+    !contentType.startsWith("text/") &&
+    !contentType.includes("json") &&
+    !contentType.includes("xml")
+  ) {
+    data = (await response.blob()) as T;
+  } else {
+    data = (await response.text()) as T;
+  }
+
   return { status: response.status, data, headers: response.headers } as T;
 };
