@@ -1,3 +1,8 @@
+const getUrl = (contextUrl: string): string => {
+  const apiUrl = "http://localhost:3000";
+  return new URL(contextUrl, apiUrl).toString();
+};
+
 const getBody = <T>(response: Response | Request): Promise<T> => {
   const contentType = response.headers.get("content-type");
 
@@ -15,11 +20,6 @@ const getBody = <T>(response: Response | Request): Promise<T> => {
   }
 
   return response.text() as Promise<T>;
-};
-
-const getUrl = (contextUrl: string): string => {
-  const apiUrl = "http://localhost:3000";
-  return new URL(contextUrl, apiUrl).toString();
 };
 
 export const customFetch = async <T>(
