@@ -18,8 +18,8 @@ const getBody = <T>(response: Response | Request): Promise<T> => {
 };
 
 const getUrl = (contextUrl: string): string => {
-  const baseUrl = "http://localhost:3000";
-  return new URL(contextUrl, baseUrl).toString();
+  const apiUrl = "http://localhost:3000";
+  return new URL(contextUrl, apiUrl).toString();
 };
 
 export const customFetch = async <T>(
