@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch index.ts"
+    "dev": "bun --watch index.ts",
+    "openapi": "orval --config ./orval.config.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",

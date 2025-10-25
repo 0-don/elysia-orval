@@ -3,13 +3,13 @@ import { defineConfig } from "orval";
 export default defineConfig({
   app: {
     input: {
-      target: "http://localhost:3000/v3/api-docs",
+      target: "http://localhost:3000/openapi/json",
       validation: false,
     },
     output: {
-      target: "./openapi.ts",
-
-    },
-    hooks: { afterAllFilesWrite: "prettier --write" },
+      target: './openapi.ts',
+      client: 'fetch',
+      prettier: true
+    }
   },
 });
