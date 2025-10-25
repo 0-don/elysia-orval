@@ -4,8 +4,12 @@ import { log } from "console";
 import { Elysia } from "elysia";
 
 new Elysia({ adapter: node() })
-  .use(openapi())
-  .get("/", () => "hello")
+  .use(
+    openapi({
+      documentation: { servers: [{ url: "http://localhost:3000" }] },
+    })
+  )
+  .get("/", () => ({ hello: "hello" }))
   .post("/hello", () => "OpenAPI")
   .listen(3000);
 
