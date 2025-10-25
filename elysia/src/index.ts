@@ -4,7 +4,7 @@ import { log } from "console";
 import { Elysia, t } from "elysia";
 
 export const app = new Elysia({ adapter: node() })
-  .use(openapi({ references: fromTypes("src/index.ts") }))
+  .use(openapi({ references: fromTypes() }))
   .get("/", ({ query }) => ({ hello: "hello", query }), {
     query: t.Object({ name: t.String() }),
   })
