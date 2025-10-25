@@ -18,7 +18,7 @@ const getBody = <T>(response: Response | Request): Promise<T> => {
 };
 
 const getUrl = (contextUrl: string): string => {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const baseUrl = "http://localhost:3000";
   return new URL(contextUrl, baseUrl).toString();
 };
 
