@@ -2,8 +2,8 @@
 
 Install dependencies:
 ```bash
-cd elysia && bun install
-cd orval && bun install
+cd elysia && npm install
+cd orval && npm install
 ```
 
 ## Testing
@@ -11,19 +11,19 @@ cd orval && bun install
 1. Start the server:
 ```bash
 cd elysia
-bun run dev
+npm run dev
 ```
 
 2. Generate client types:
 ```bash
 cd orval
-bun run openapi
+npm run openapi
 ```
 
 3. Test the client:
 ```bash
 cd orval
-bun run dev
+npm run dev
 ```
 
 ## Endpoints
