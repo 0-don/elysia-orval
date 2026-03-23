@@ -4,7 +4,11 @@ import { log } from "console";
 import { Elysia, t } from "elysia";
 
 export const app = new Elysia({ adapter: node() })
-  .use(openapi({ references: fromTypes() }))
+  .use(openapi({ references: fromTypes("src/index.ts") }))
+  .onError((error) => {
+    log("Error:", error);
+    return { error: "An unexpected error occurred." };
+  })
   .get("/", ({ query }) => ({ hello: "hello", query }), {
     query: t.Object({ name: t.String() }),
   })

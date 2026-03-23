@@ -8,13 +8,13 @@
     "openapi": "orval --config ./orval.config.ts"
   },
   "devDependencies": {
-    "@types/node": "24.9.1",
-    "tsx": "4.20.6"
+    "@types/node": "25.5.0",
+    "tsx": "4.21.0"
   },
   "peerDependencies": {
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   },
   "dependencies": {
-    "orval": "7.15.0"
+    "orval": "8.6.0"
   }
 }
