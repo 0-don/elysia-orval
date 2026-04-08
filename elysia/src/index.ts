@@ -4,16 +4,21 @@ import { log } from "console";
 import { Elysia, t } from "elysia";
 
 export const app = new Elysia({ adapter: node() })
-  .use(openapi({ references: fromTypes("src/index.ts") }))
+  .use(
+    openapi({
+      references: fromTypes("src/index.ts"),
+      documentation: { openapi: "3.1.0" }
+    })
+  )
   .onError((error) => {
     log("Error:", error);
     return { error: "An unexpected error occurred." };
   })
   .get("/", ({ query }) => ({ hello: "hello", query }), {
-    query: t.Object({ name: t.String() }),
+    query: t.Object({ name: t.String() })
   })
   .post("/hello", () => "OpenAPI", {
-    body: t.Object({ id: t.Number() }),
+    body: t.Object({ id: t.Number() })
   })
   .listen(3000);
 
